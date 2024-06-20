@@ -1,25 +1,68 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import React from 'react';
+import { Layout, Menu, theme } from 'antd';
+const { Header, Content, Footer } = Layout;
+const labels = ['Home', 'About', 'Gallery', 'Products', 'Contact Us'];
+const items = labels.map((label, index) => ({
+  key: String(index + 1),
+  label: label,
+}));
+const App = () => {
+  const {
+    token: { colorBgContainer, borderRadiusLG },
+  } = theme.useToken();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <Layout>
+      <Header
+        theme='light'
+        style={{
+          position: 'sticky',
+          top: 0,
+          zIndex: 1,
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'right',
+          backgroundColor: 'white'
+          
+        }}
+      >
+        <div className="demo-logo" >S M Engg</div>
+        <Menu
+          theme="light"
+          mode="horizontal"
+          defaultSelectedKeys={['1']}
+          items={items}
+          style={{
+            flex: 1,
+            minWidth: 0,
+          }}
+        />
+      </Header>
+      <Content
+        style={{
+          padding: '48px',
+        }}
+      >
+        
+        <div
+          style={{
+            padding: 24,
+            minHeight: 800,
+            background: colorBgContainer,
+            borderRadius: borderRadiusLG,
+          }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          Content
+        </div>
+      </Content>
+      <Footer
+        style={{
+          textAlign: 'center',
+        }}
+      >
+        Ant Design ©{new Date().getFullYear()} Created by Ant UED
+      </Footer>
+    </Layout>
   );
-}
-
+};
 export default App;
